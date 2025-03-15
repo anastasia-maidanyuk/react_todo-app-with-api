@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import classNames from 'classnames';
 import { Todo } from '../types/Todo';
 
 interface HeaderProps {
@@ -30,7 +31,9 @@ const Header: React.FC<HeaderProps> = ({
     <header className="todoapp__header">
       <button
         type="button"
-        className={`todoapp__toggle-all ${todos.every(todo => todo.completed) ? 'active' : ''}`}
+        className={classNames('todoapp__toggle-all', {
+          active: todos.every(todo => todo.completed),
+        })}
         onClick={() => todos.forEach(todo => handleToggleTodo(todo))}
         disabled={loading || todos.length === 0}
       />

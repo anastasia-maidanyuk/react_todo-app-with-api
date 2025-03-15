@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import classNames from 'classnames';
 import { Todo } from '../types/Todo';
 
 interface TodoItemProps {
@@ -73,7 +74,12 @@ const TodoItem: React.FC<TodoItemProps> = ({
   };
 
   return (
-    <div className={`todo ${completed ? 'completed' : ''}`} data-cy="Todo">
+    <div
+      className={classNames('todo', {
+        completed: completed,
+      })}
+      data-cy="Todo"
+    >
       <label className="todo__status-label" htmlFor={todoId}>
         {' '}
         <input
@@ -133,7 +139,9 @@ const TodoItem: React.FC<TodoItemProps> = ({
 
       <div
         data-cy="TodoLoader"
-        className={`modal overlay ${isLoading ? 'is-active' : ''}`}
+        className={classNames('modal', 'overlay', {
+          'is-active': isLoading,
+        })}
       >
         <div className="modal-background has-background-white-ter" />
         <div className="loader" />

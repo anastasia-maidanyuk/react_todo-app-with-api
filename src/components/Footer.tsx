@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import { Todo } from '../types/Todo';
 import { FilterType } from '../types/FilterType';
 
@@ -32,7 +33,9 @@ const Footer: React.FC<FooterProps> = ({
           <a
             key={filter}
             href={`#/${filter.toLowerCase()}`}
-            className={`filter__link ${activeFilter === filter ? 'selected' : ''}`}
+            className={classNames('filter__link', {
+              selected: activeFilter === filter,
+            })}
             data-cy={`FilterLink${filter}`}
             onClick={() => setActiveFilter(filter)}
           >

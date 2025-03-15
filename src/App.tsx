@@ -36,7 +36,7 @@ export const App: React.FC = () => {
     }
   }, []);
 
-  const loadTodos = async () => {
+  const loadTodos = useCallback(async () => {
     try {
       setLoading(true);
       const data = await getTodos();
@@ -49,11 +49,11 @@ export const App: React.FC = () => {
       setLoading(false);
       focusInput();
     }
-  };
+  }, [focusInput]);
 
   useEffect(() => {
     loadTodos();
-  }, []);
+  }, [loadTodos]);
 
   const handleAddTodo = async (event: React.FormEvent) => {
     event.preventDefault();
